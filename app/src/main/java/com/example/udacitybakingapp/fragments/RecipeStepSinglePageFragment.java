@@ -10,6 +10,7 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.CardView;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -83,7 +84,6 @@ public class RecipeStepSinglePageFragment extends Fragment implements ExoPlayer.
     String video;
 
 
-
     public RecipeStepSinglePageFragment() {
     }
 
@@ -152,15 +152,12 @@ public class RecipeStepSinglePageFragment extends Fragment implements ExoPlayer.
 
         String imageUrl = getArguments().getString(EXTRA_IMAGE_URL_ID);
 
-        if (imageUrl != null && !imageUrl.isEmpty()) {
-            // Load and show Image
-
+        if (TextUtils.isEmpty(imageUrl)) {
             Glide.with(this)
                     .load(imageUrl)
                     .into(stepImage);
             setViewVisibility(stepImage, false);
         } else {
-            // Hide image view
             setViewVisibility(stepImage, false);
         }
 
@@ -220,15 +217,12 @@ public class RecipeStepSinglePageFragment extends Fragment implements ExoPlayer.
     public void onResume() {
         super.onResume();
         if (video != null && !video.isEmpty()) {
-
-            // Init and show video view
             setViewVisibility(mPlayerView, true);
             initializeMediaSession();
             initPlayer(Uri.parse(video));
 
             int orientation = getResources().getConfiguration().orientation;
             if (orientation == Configuration.ORIENTATION_LANDSCAPE) {
-                // Expand video, hide description, hide system UI
                 if (!mTwoPane) {
                     expandVideoView(mPlayerView);
                     setViewVisibility(cardView, false);
@@ -240,7 +234,6 @@ public class RecipeStepSinglePageFragment extends Fragment implements ExoPlayer.
             playBackPosition = player.getCurrentPosition();
 
         } else {
-            // Hide video view
             setViewVisibility(mPlayerView, false);
         }
     }
@@ -262,7 +255,7 @@ public class RecipeStepSinglePageFragment extends Fragment implements ExoPlayer.
         if (player == null) {
             TrackSelector trackSelector = new DefaultTrackSelector();
             LoadControl loadControl = new DefaultLoadControl();
-            player = ExoPlayerFactory.newSimpleInstance(getContext(), trackSelector,loadControl);
+            player = ExoPlayerFactory.newSimpleInstance(getContext(), trackSelector, loadControl);
             mPlayerView.setPlayer(player);
             player.addListener(this);
             String userAgent = Util.getUserAgent(getContext(), "StepVideo");

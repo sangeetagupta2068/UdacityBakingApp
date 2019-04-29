@@ -32,6 +32,7 @@ public class RecipeListAdapter extends RecyclerView.Adapter<RecipeListAdapter.Vi
     public interface OnStepClickListener {
         void onStepSelected(View v, int position, int id);
     }
+
     public RecipeListAdapter(ArrayList<Recipe> mRecipe, Context context, OnStepClickListener listener) {
         this.mRecipe = mRecipe;
         this.mListener = listener;
@@ -70,10 +71,14 @@ public class RecipeListAdapter extends RecyclerView.Adapter<RecipeListAdapter.Vi
     }
 
     class ViewHolder extends RecyclerView.ViewHolder {
-        @BindView(R.id.recipe_name) TextView recipeName;
-        @BindView(R.id.recipe_servings) TextView recipeServings;
-        @BindView(R.id.recipe_cardview) CardView recipeCardView;
-        @BindView(R.id.radio_button) RadioButton selectedRecipe;
+        @BindView(R.id.recipe_name)
+        TextView recipeName;
+        @BindView(R.id.recipe_servings)
+        TextView recipeServings;
+        @BindView(R.id.recipe_cardview)
+        CardView recipeCardView;
+        @BindView(R.id.radio_button)
+        RadioButton selectedRecipe;
 
         ViewHolder(View itemView) {
             super(itemView);

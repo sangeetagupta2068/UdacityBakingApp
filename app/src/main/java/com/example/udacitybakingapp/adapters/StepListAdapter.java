@@ -1,4 +1,5 @@
 package com.example.udacitybakingapp.adapters;
+
 import android.content.Context;
 import android.content.Intent;
 import android.support.v7.widget.RecyclerView;

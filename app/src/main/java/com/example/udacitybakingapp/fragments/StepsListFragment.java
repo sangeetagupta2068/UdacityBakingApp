@@ -41,7 +41,6 @@ public class StepsListFragment extends Fragment implements StepListAdapter.OnSte
     private boolean mTwoPane;
 
 
-
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -51,7 +50,7 @@ public class StepsListFragment extends Fragment implements StepListAdapter.OnSte
         }
     }
 
-    public static StepsListFragment newInstance(String sRecipe, boolean twoPane){
+    public static StepsListFragment newInstance(String sRecipe, boolean twoPane) {
         StepsListFragment fragment = new StepsListFragment();
         Bundle args = new Bundle();
         args.putString(STRING_RECIPE, sRecipe);
@@ -72,7 +71,7 @@ public class StepsListFragment extends Fragment implements StepListAdapter.OnSte
         View view = inflater.inflate(R.layout.fragment_step, container, false);
         Intent intent = getActivity().getIntent();
         final Context mContext = getContext();
-        if (savedInstanceState != null){
+        if (savedInstanceState != null) {
             stepsPosition = savedInstanceState.getInt(STEPS_POSITION);
         }
         if (intent != null) {
@@ -109,10 +108,10 @@ public class StepsListFragment extends Fragment implements StepListAdapter.OnSte
         mStepRecyclerView.setLayoutManager(layoutManager);
         mStepRecyclerView.addItemDecoration(new DividerItemDecoration(mContext, DividerItemDecoration.VERTICAL));
 
-        if (mTwoPane){
-            StepListAdapterForTwoPane listAdapter = new StepListAdapterForTwoPane(mSteps,this,recipeName, id);
+        if (mTwoPane) {
+            StepListAdapterForTwoPane listAdapter = new StepListAdapterForTwoPane(mSteps, this, recipeName, id);
             mStepRecyclerView.setAdapter(listAdapter);
-        }else {
+        } else {
             StepListAdapter listAdapter = new StepListAdapter(mSteps, this, recipeName, id);
             mStepRecyclerView.setAdapter(listAdapter);
         }
@@ -134,7 +133,7 @@ public class StepsListFragment extends Fragment implements StepListAdapter.OnSte
         RecipeStepSinglePageFragment singlePageFragment =
                 RecipeStepSinglePageFragment.newInstance(videoUrl, description, imageUrl, mTwoPane);
 
-        FragmentManager fm=getFragmentManager();
+        FragmentManager fm = getFragmentManager();
         FragmentTransaction ft = fm.beginTransaction();
         ft.replace(R.id.fragment_container2, singlePageFragment, RecipeStepSinglePageFragment.class.getSimpleName());
         ft.commit();

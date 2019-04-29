@@ -23,7 +23,7 @@ public class SingleStepAdapter extends FragmentStatePagerAdapter {
         this.mContext = context;
         this.mSteps = new ArrayList<>();
         if (steps != null) {
-            Log.d("PagerAdapter", "steps is not null" );
+            Log.d("PagerAdapter", "steps is not null");
             this.mSteps.addAll(steps);
         }
     }

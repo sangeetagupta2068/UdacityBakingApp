@@ -30,7 +30,7 @@ public class RecipeStepsActivity extends AppCompatActivity {
         setContentView(R.layout.activity_recipe_steps);
         unbinder = ButterKnife.bind(this);
         if (getIntent() != null) {
-            int id = getIntent().getIntExtra(EXTRA_RECIPE_ID,DEFAULT_RECIPE_ID);
+            int id = getIntent().getIntExtra(EXTRA_RECIPE_ID, DEFAULT_RECIPE_ID);
             sRecipe = getIntent().getExtras().getString("recipe");
             String title = getIntent().getExtras().getString(EXTRA_RECIPE_NAME);
             setTitle(title);

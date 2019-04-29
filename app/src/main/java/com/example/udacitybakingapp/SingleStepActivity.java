@@ -6,7 +6,6 @@ import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
-import android.widget.ArrayAdapter;
 
 import com.example.udacitybakingapp.adapters.SingleStepAdapter;
 import com.example.udacitybakingapp.models.Step;
@@ -40,7 +39,8 @@ public class SingleStepActivity extends AppCompatActivity {
         int stepId = 0;
         if (intent != null && intent.hasExtra(STEPS)) {
             String mStep = intent.getStringExtra(STEPS);
-            Type type = new TypeToken<List<Step>>(){}.getType();
+            Type type = new TypeToken<List<Step>>() {
+            }.getType();
             steps.clear();
             steps = new GsonBuilder().create().fromJson(mStep, type);
             String title = intent.getExtras().getString("current_recipe");
@@ -60,20 +60,17 @@ public class SingleStepActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         if (item.getItemId() == android.R.id.home) {
-            //Title bar back press triggers onBackPressed()
             onBackPressed();
             return true;
         }
         return super.onOptionsItemSelected(item);
     }
 
-    //Both navigation bar back press and title bar back press will trigger this method
     @Override
     public void onBackPressed() {
-        if (getFragmentManager().getBackStackEntryCount() > 0 ) {
+        if (getFragmentManager().getBackStackEntryCount() > 0) {
             getFragmentManager().popBackStack();
-        }
-        else {
+        } else {
             super.onBackPressed();
         }
     }

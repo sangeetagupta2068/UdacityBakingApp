@@ -24,7 +24,7 @@ public class StepListAdapterForTwoPane extends RecyclerView.Adapter<StepListAdap
     private Boolean mTwoPane;
     OnStepClickListener mListener;
 
-    public interface OnStepClickListener{
+    public interface OnStepClickListener {
         void onClickStepSelected(View v, int position, String videoUrl, String description, String imageUrl);
     }
 

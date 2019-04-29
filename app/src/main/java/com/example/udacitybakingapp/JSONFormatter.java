@@ -29,7 +29,7 @@ public final class JSONFormatter {
     public static String JSON_URL = "https://d17h27t6h515a5.cloudfront.net/topher/2017/May/59121517_baking/baking.json";
     private static SharedPreferences mPreferences;
 
-    public static List<Recipe> fetchRecipeData(String requestURL, SharedPreferences preferences){
+    public static List<Recipe> fetchRecipeData(String requestURL, SharedPreferences preferences) {
         URL url = createUrl(JSON_URL);
 
         String jsonResponse = null;
@@ -56,7 +56,7 @@ public final class JSONFormatter {
         return mUrl;
     }
 
-    private static String makeHttpRequest(URL url) throws IOException{
+    private static String makeHttpRequest(URL url) throws IOException {
         String jsonResponse = null;
 
         if (url == null) {
@@ -110,7 +110,7 @@ public final class JSONFormatter {
 
 
     public static ArrayList<Recipe> extractDataFromJson() {
-        String json = mPreferences.getString(THEJSON,"");
+        String json = mPreferences.getString(THEJSON, "");
         int id;
         String name;
         int servings;
@@ -131,7 +131,7 @@ public final class JSONFormatter {
     }
 
     public static ArrayList<Ingredient> extractIngredientsFromJson(int mId) {
-        String json = mPreferences.getString(THEJSON,"");
+        String json = mPreferences.getString(THEJSON, "");
         int id;
         int quantity;
         ArrayList<Ingredient> mIngredients = new ArrayList<>();
@@ -140,9 +140,9 @@ public final class JSONFormatter {
             for (int i = 0; i < baseJsonArray.length(); i++) {
                 JSONObject currentRecipe = baseJsonArray.getJSONObject(i);
                 id = currentRecipe.getInt("id");
-                if (mId == id){
+                if (mId == id) {
                     JSONArray ingredientsArray = currentRecipe.getJSONArray("ingredients");
-                    for (int j = 0; j < ingredientsArray.length(); j++){
+                    for (int j = 0; j < ingredientsArray.length(); j++) {
                         JSONObject currentIngredient = ingredientsArray.getJSONObject(j);
                         quantity = currentIngredient.getInt("quantity");
                         String measure = currentIngredient.getString("measure");
@@ -158,7 +158,7 @@ public final class JSONFormatter {
     }
 
     public static ArrayList<Step> extractStepsFromJson(int mId) {
-        String json = mPreferences.getString(THEJSON,"");
+        String json = mPreferences.getString(THEJSON, "");
         int id;
         ArrayList<Step> mSteps = new ArrayList<>();
         try {
@@ -166,9 +166,9 @@ public final class JSONFormatter {
             for (int i = 0; i < baseJsonArray.length(); i++) {
                 JSONObject currentRecipe = baseJsonArray.getJSONObject(i);
                 id = currentRecipe.getInt("id");
-                if (mId == id){
+                if (mId == id) {
                     JSONArray stepsArray = currentRecipe.getJSONArray("steps");
-                    for (int j = 0; j < stepsArray.length(); j++){
+                    for (int j = 0; j < stepsArray.length(); j++) {
                         JSONObject currentStep = stepsArray.getJSONObject(j);
                         int stepId = currentStep.getInt("id");
                         Log.d(TAG, "StepId: " + stepId);
