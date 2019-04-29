@@ -23,11 +23,6 @@ public class RecipeListTest {
     @Rule
     public ActivityTestRule<MainActivity> activityTestRule = new ActivityTestRule<>(MainActivity.class);
 
-    @Test
-    public void clickOnRecyclerViewItem(){
-
-    }
-
     private IdlingResource idlingResource;
 
     @Before
